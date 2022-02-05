@@ -5,11 +5,13 @@ import Header from "./Header";
 import Footer from "./Footer";
 import Showcase from "../Showcase";
 
-const Layout = ({ title, keywords, description, children }) => {
+const Layout = ({ title, keywords, description, children, singleGig }) => {
   const router = useRouter();
   const renderShowcase = (route) => {
     if (route === "/about" || route === "/gigs" || route === "/404") {
       return null;
+    } else if (route === "/gigs/[slug]") {
+      return <Showcase gig={singleGig} />
     } else {
       return <Showcase />;
     }
