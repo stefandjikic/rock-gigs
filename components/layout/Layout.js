@@ -5,15 +5,15 @@ import Header from "./Header";
 import Footer from "./Footer";
 import Showcase from "../Showcase";
 
-const Layout = ({ title, keywords, description, children, singleGig }) => {
+const Layout = ({ title, keywords, description, children, singleGig, search }) => {
   const router = useRouter();
   const renderShowcase = (route) => {
-    if (route === "/about" || route === "/gigs" || route === "/404") {
-      return null;
+    if (route === "/") {
+      return <Showcase />;
     } else if (route === "/gigs/[slug]") {
       return <Showcase gig={singleGig} />
     } else {
-      return <Showcase />;
+      return null;
     }
   };
   return (
@@ -23,7 +23,7 @@ const Layout = ({ title, keywords, description, children, singleGig }) => {
         <meta name="description" content={description} />
         <meta name="keywords" content={keywords} />
       </Head>
-      <Header />
+      <Header search={search} />
       {renderShowcase(router.pathname)}
       <Container minH="80vh" maxW="container.xl">
         {children}

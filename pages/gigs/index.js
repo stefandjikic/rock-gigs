@@ -5,13 +5,13 @@ import EventCard from "../../components/EventCard";
 
 export default function GigsPage({ gigs }) {
   return (
-    <Layout>
-      <Heading as="h1" mt="10" mb="8">All Gigs</Heading>
+    <Layout search>
+      <Heading as="h1" mt="10" mb="8">
+        All Gigs
+      </Heading>
       {gigs && gigs.length > 0 ? (
-        gigs?.map((gig) => (
-          <EventCard key={gig.id} data={gig} />
-        ))
-      ): (
+        gigs?.map((gig) => <EventCard key={gig.id} data={gig} />)
+      ) : (
         <Box>There are no gigs at the moment.</Box>
       )}
     </Layout>
