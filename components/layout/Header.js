@@ -10,7 +10,9 @@ const Header = () => {
         <Container py={6} maxW="container.xl">
           <Flex justify="space-between">
             <Box>
-              <Link href="/">RockGigs</Link>
+              <Link href="/" passHref>
+                <Box color="red.500" fontWeight="bold" cursor="pointer">RockGigs</Box>
+              </Link>
             </Box>
             <nav>
               <HStack spacing={6}>

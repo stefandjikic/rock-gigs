@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 const YoutubeEmbed = ({ ytId, bandName }) => {
   return (
-    <AspectRatio maxW={{ base: "full", md: "380" }} ratio={16 / 9}>
+    <AspectRatio maxW={{ base: "full", md: "420" }} h={{ base: "full", md: "230" }} ratio={16 / 9}>
       {ytId !== null ? (
         <iframe
           src={`https://www.youtube.com/embed/${ytId}`}

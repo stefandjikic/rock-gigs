@@ -19,10 +19,10 @@ export default function GigsPage({ gigs }) {
 }
 
 export async function getServerSideProps() {
-  const res = await fetch(`${API_URL}/api/gigs`);
+  const res = await fetch(`${API_URL}/api/events?populate=image&sort=date:asc`);
   const gigs = await res.json();
 
   return {
-    props: { gigs },
+    props: { gigs: gigs.data },
   };
 }
