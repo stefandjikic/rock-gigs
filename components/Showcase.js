@@ -15,7 +15,7 @@ const Showcase = ({ gig = {} }) => {
       date = "",
       name = "",
       venue = "",
-      image: { data: { attributes: imageAttributes = {} } = {} } = {},
+      image: { data: imageData = {}} = {},
     } = {},
   } = gig;
   const headingColor = useColorModeValue("gray.50");
@@ -75,7 +75,7 @@ const Showcase = ({ gig = {} }) => {
             <Image
               width={300}
               height={320}
-              src={imageAttributes.url || "/images/rocco-dipoppa.jpg"}
+              src={imageData?.attributes?.url || "/images/rocco-dipoppa.jpg"}
               alt={name}
             />
           </Box>

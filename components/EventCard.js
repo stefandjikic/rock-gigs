@@ -13,9 +13,7 @@ const EventCard = ({ data }) => {
       date = "",
       slug = "",
       image: {
-        data: {
-          attributes: imageAttributes = {},
-        },
+        data: imageData = {},
       },
     },
   } = data;
@@ -28,7 +26,7 @@ const EventCard = ({ data }) => {
     >
       <Box w="200px" mr="6">
         <Image
-          src={imageAttributes.url || defaultImg}
+          src={imageData?.attributes?.url || defaultImg}
           alt="band image"
           width={180}
           height={180}

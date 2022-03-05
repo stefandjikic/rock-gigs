@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useRouter } from "next/router";
 import Link from "next/link";
 import {
   Grid,
@@ -11,13 +12,15 @@ import {
   Textarea,
 } from "@chakra-ui/react";
 import { ArrowLeftIcon } from "@chakra-ui/icons";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import Layout from "../../components/layout/Layout";
+import { API_URL } from "../../config";
 
 const AddGigPage = () => {
   const [values, setValues] = useState({
     name: "",
-    slug: "",
-    image: "",
+    // image: "",
     bandName: "",
     venue: "",
     address: "",
@@ -26,10 +29,43 @@ const AddGigPage = () => {
     youtubeUrl: "",
     time: "",
   });
+  const router = useRouter();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(values);
+
+    const emptyFields = Object.values(values).some((v) => v === "");
+    if (emptyFields) {
+      toast.error("Please fill in empty fields");
+    } else {
+      console.log(values);
+      const res = await fetch(`${API_URL}/api/events`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ data: values }),
+      });
+      if (!res.ok) {
+        toast.error("Something went wrong");
+      } else {
+        toast.success("New Gig Added");
+        setValues({
+          name: "",
+          // image: "",
+          bandName: "",
+          venue: "",
+          address: "",
+          date: "",
+          content: "",
+          youtubeUrl: "",
+          time: "",
+        });
+        setTimeout(() => {
+          router.push("/gigs");
+        }, 1500);
+      }
+    }
   };
 
   const handleInput = (e) => {
@@ -46,6 +82,7 @@ const AddGigPage = () => {
       <Heading as="h1" fontSize="xl" mt="10" mb="8">
         Add new Gig
       </Heading>
+      <ToastContainer hideProgressBar="false" autoClose="3000" />
       <FormControl as="form" onSubmit={handleSubmit}>
         <Grid templateColumns="repeat(2, 1fr)" gap={6}>
           <Box>
