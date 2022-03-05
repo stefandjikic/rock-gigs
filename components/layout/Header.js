@@ -18,10 +18,13 @@ const Header = ({ search }) => {
               </Link>
             </Box>
             {search && <Search />}
-            <nav>
-              <HStack spacing={6}>
+            <Box as="nav">
+              <HStack spacing={{ base: 3, md: 6 }}>
                 <Box _hover={{ color: "red.500" }}>
                   <Link href="/gigs">All Gigs</Link>
+                </Box>
+                <Box _hover={{ color: "red.500" }}>
+                  <Link href="/gigs/add">Add Gig</Link>
                 </Box>
                 <MoonIcon
                   _hover={{ cursor: "pointer" }}
@@ -29,7 +32,7 @@ const Header = ({ search }) => {
                   color={colorMode === "light" ? "gray.700" : "gray.50"}
                 />
               </HStack>
-            </nav>
+            </Box>
           </Flex>
         </Container>
       </Box>
